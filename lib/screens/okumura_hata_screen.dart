@@ -80,7 +80,7 @@ class _CustomForm extends StatelessWidget {
             controller: _distanceCtrl,
             hintText: 'Ingrese distancia (km)',
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 20),
           CustomDropdownField(
             hintText: 'Tipo de ciudad',
             items: const <DropdownMenuItem<int>>[

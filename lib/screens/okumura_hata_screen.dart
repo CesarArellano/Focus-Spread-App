@@ -167,16 +167,16 @@ class _CustomForm extends StatelessWidget {
       title: 'Resultados',
       children: <Widget>[
         const Text('Factor de correción:'),
-        Text('$correctionFactor dB'),
+        Text('${ correctionFactor.toStringAsFixed(4) } dB'),
         const SizedBox(height: 10),
         const Text('Pérdidas de propagación Urbano:'),
-        Text('${ urbanPropagationLosses.isNaN ? 0 : urbanPropagationLosses } dB'),
+        Text('${ urbanPropagationLosses.isNaN ? 0 : urbanPropagationLosses.toStringAsFixed(4) } dB'),
         const SizedBox(height: 10),
         const Text('Pérdidas de propagación Suburbano:'),
-        Text('${ suburbanPropagationLosses.isNaN ? 0 : suburbanPropagationLosses } dB'),
+        Text('${ suburbanPropagationLosses.isNaN ? 0 : suburbanPropagationLosses.toStringAsFixed(4) } dB'),
         const SizedBox(height: 10),
         const Text('Pérdidas de propagación Rural:'),
-        Text('${ ruralPropagationLosses.isNaN ? 0 : ruralPropagationLosses } dB'),
+        Text('${ ruralPropagationLosses.isNaN ? 0 : ruralPropagationLosses.toStringAsFixed(4) } dB'),
       ]
     );
   }
@@ -188,6 +188,6 @@ class _CustomForm extends StatelessWidget {
   }) {
     return ( cityType == 1)
       ? ( 1.1 * log10(frequency) - 0.7 ) * heightRx - ( 1.56 * log10(frequency) - 0.8 )
-      : 8.29 * pow( log10(1.54 * heightRx ), 2) - 1.1;
+      : ( 8.29 * pow( log10(1.54 * heightRx ), 2) ) - 1.1;
   }
 }

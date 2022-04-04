@@ -124,7 +124,7 @@ class _CustomForm extends StatelessWidget {
     }
 
     final gainHte = 20 * log10( heightTx / 200 );
-    final gainHre = ( heightTx < 3 ) ? 10 * log10( heightRx / 3 ) : 20 * log10( heightRx / 3 );
+    final gainHre = ( heightRx < 3 ) ? 10 * log10( heightRx / 3 ) : 20 * log10( heightRx / 3 );
 
     final double propagationLossesResult = lossesF + attenuationMu - gainHte - gainHre - gainArea;
 
@@ -133,7 +133,7 @@ class _CustomForm extends StatelessWidget {
       title: 'Resultado',
       children: <Widget>[
         const Text('Pérdidas por trayectoria:'),
-        Text('${ propagationLossesResult.isNaN ? 0 : propagationLossesResult } dB')
+        Text('${ propagationLossesResult.isNaN ? 0 : propagationLossesResult.toStringAsFixed(4) } dB')
       ]
     );
   }

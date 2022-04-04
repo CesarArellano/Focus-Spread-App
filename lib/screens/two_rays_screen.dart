@@ -125,10 +125,10 @@ class _CustomForm extends StatelessWidget {
       title: 'Resultados',
       children: <Widget>[
         const Text('Potencia recibida:'),
-        Text('$outputPowerResult W'),
+        Text('${ outputPowerResult.toStringAsFixed(4) } W'),
         const SizedBox(height: 10),
         const Text('Pérdidas por trayectoria:'),
-        Text('${ propagationLossesResult.isNaN ? 0 : propagationLossesResult } dB')
+        Text('${ propagationLossesResult.isNaN ? 0 : propagationLossesResult.toStringAsFixed(4) } dB')
       ]
     );
   }

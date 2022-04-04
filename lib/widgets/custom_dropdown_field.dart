@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focus_spread/helpers/helpers.dart';
 
-class CustomDropdownField extends StatelessWidget {
+class CustomDropdownField<T> extends StatelessWidget {
   const CustomDropdownField({
     Key? key,
     required this.hintText,
@@ -10,12 +10,12 @@ class CustomDropdownField extends StatelessWidget {
   }) : super(key: key);
 
   final String hintText;
-  final List<DropdownMenuItem<int>>? items;
-  final void Function(int?)? onChanged;
+  final List<DropdownMenuItem<T>>? items;
+  final void Function(T?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<int>(
+    return DropdownButtonFormField<T>(
       decoration: Helpers.inputDecoration(hintText: hintText),
       items: items,
       validator: (value) {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:focus_spread/helpers/helpers.dart';
 
 import 'package:focus_spread/theme/app_theme.dart';
+import 'package:focus_spread/widgets/custom_dropdown_field.dart';
 import 'package:focus_spread/widgets/custom_text_field.dart';
 
 class OkumuraHataScreen extends StatelessWidget {
@@ -23,13 +24,13 @@ class OkumuraHataScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
                 const Text(
                   'Ingrese los siguientes datos:',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 15),
-                _CustomForm()
+                _CustomForm(),
               ],
             ),
           )
@@ -80,21 +81,25 @@ class _CustomForm extends StatelessWidget {
             hintText: 'Ingrese distancia (km)',
           ),
           const SizedBox(height: 15),
-          DropdownButtonFormField<int>(
-            decoration: Helpers.inputDecoration(hintText: 'Tipo de ciudad'),
-            value: 1,
-            items: const[
-              DropdownMenuItem( value: 1, child: Text('Ciudades pequeñas y medianas')),
-              DropdownMenuItem( value: 2, child: Text('Ciudades grandes')),
+          CustomDropdownField(
+            hintText: 'Tipo de ciudad',
+            items: const <DropdownMenuItem<int>>[
+              DropdownMenuItem( child: Text('Seleccione el tipo de ciudad') ),
+              DropdownMenuItem( value: 1, child: Text('Ciudad pequeña') ),
+              DropdownMenuItem( value: 2, child: Text('Ciudad grande') ),
             ],
-            onChanged: ( value ) {
+            onChanged: (int? value) {
               dropdownValue['cityType'] = value ?? 1;
-            }
+            },
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
           MaterialButton(
+            shape: const StadiumBorder(),
             color: AppTheme.primaryColor,
-            child: const Text('Calcular valores', style: TextStyle(color: Colors.white, fontSize: 14),),
+            child:  const Padding(
+              padding: EdgeInsets.all(15.0),
+              child: Text('Calcular valores', style: TextStyle(color: Colors.white, fontSize: 14),),
+            ),
             onPressed: () => validateAndShowResults(context: context)
           )
         ],
@@ -162,7 +167,7 @@ class _CustomForm extends StatelessWidget {
       title: 'Resultados',
       children: <Widget>[
         const Text('Factor de correción:'),
-        Text('$correctionFactor'),
+        Text('$correctionFactor dB'),
         const SizedBox(height: 10),
         const Text('Pérdidas de propagación Urbano:'),
         Text('${ urbanPropagationLosses.isNaN ? 0 : urbanPropagationLosses } dB'),
@@ -183,6 +188,6 @@ class _CustomForm extends StatelessWidget {
   }) {
     return ( cityType == 1)
       ? ( 1.1 * log10(frequency) - 0.7 ) * heightRx - ( 1.56 * log10(frequency) - 0.8 )
-      : 8.29 * pow( log10(1.54 * heightRx ), 2)  - 1.1;
+      : 8.29 * pow( log10(1.54 * heightRx ), 2) - 1.1;
   }
 }

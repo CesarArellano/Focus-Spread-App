@@ -24,7 +24,7 @@ class Helpers {
         ),
         actions: [
           MaterialButton(
-            child: const Text('Ok'),
+            child: const Text('Ok', style: TextStyle(color: AppTheme.primaryColor)),
             onPressed: () => Navigator.pop(ctx),
           ),
         ],

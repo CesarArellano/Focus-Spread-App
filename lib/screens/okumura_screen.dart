@@ -21,10 +21,10 @@ class OkumuraScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
                 const Text(
                   'Ingrese los siguientes datos:',
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 15),
                 _CustomForm()
@@ -79,10 +79,14 @@ class _CustomForm extends StatelessWidget {
             controller: _gainAreaCtrl,
             hintText: 'Ingrese Garea (dB)',
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
           MaterialButton(
+            shape: const StadiumBorder(),
             color: AppTheme.primaryColor,
-            child: const Text('Calcular valores', style: TextStyle(color: Colors.white, fontSize: 14),),
+            child: const Padding(
+              padding: EdgeInsets.all(15.0),
+              child: Text('Calcular valor', style: TextStyle(color: Colors.white, fontSize: 14),),
+            ),
             onPressed: () => validateAndShowResults(context: context)
           )
         ],

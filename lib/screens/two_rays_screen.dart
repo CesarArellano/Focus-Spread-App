@@ -119,7 +119,6 @@ class _CustomForm extends StatelessWidget {
     final double outputPowerResult = (inputPower * gainRx * gainTx * pow(heightRx, 2) * pow(heightTx, 2)) / pow(distance, 4);
     final double propagationLossesResult = 40 * log10(distance) - ( 10 * log10(gainTx) + 10 * log10(gainRx) + 20 * log10(heightTx) + 20 * log10(heightRx) );
 
-
     Helpers.showCustomDialog(
       context: context,
       title: 'Resultados',

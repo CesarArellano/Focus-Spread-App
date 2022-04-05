@@ -186,7 +186,7 @@ class _CustomForm extends StatelessWidget {
     required double heightRx,
     required int cityType 
   }) {
-    return ( cityType == 1)
+    return ( cityType == 1 )
       ? ( 1.1 * log10(frequency) - 0.7 ) * heightRx - ( 1.56 * log10(frequency) - 0.8 )
       : ( 8.29 * pow( log10(1.54 * heightRx ), 2) ) - 1.1;
   }
